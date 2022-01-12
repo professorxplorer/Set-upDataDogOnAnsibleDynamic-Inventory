@@ -1,0 +1,16 @@
+---
+- name: Install Datadog Agent on servers in AWS
+  vars:
+    datadog_api_key: Add-Your-API-key
+    datadog_config:
+      # tags:
+      #   - env:dev
+      logs_enabled: true
+      process_config:
+        enabled: "true"
+
+  hosts: all
+  become: yes
+  user: ubuntu  #Use the default login for the AWS image. Here we are using a ubuntu image.
+  roles:
+    - { role: Datadog.datadog, become: yes }
